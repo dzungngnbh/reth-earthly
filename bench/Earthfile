@@ -1,0 +1,14 @@
+VERSION 0.8
+
+# TODO
+all:
+
+gen-test-vectors:
+	FROM ../base+reth
+	RUN cd ..; cargo run --bin reth --manifest-path reth/Cargo.toml -- test-vectors tables
+	RUN cp -r testdata reth
+	RUN mv testdata pr
+	# error here
+	#RUN cargo bench --package reth-db --bench iai --features test-utils --manifest-path main/Cargo.toml
+
+
